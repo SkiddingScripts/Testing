@@ -1,3 +1,5 @@
+-- Original
+
 if getgenv().ValiantAimHacks then return getgenv().ValiantAimHacks end
 
 -- // Services
@@ -33,8 +35,6 @@ local FindFirstChild = Instancenew("Part").FindFirstChild
 
 -- // Silent Aim Vars
 getgenv().ValiantAimHacks = {
-    lkey = "[",
-    ulkey = "]",
     SilentAimEnabled = true,
     ShowFOV = true,
     VisibleCheck = true,
@@ -175,17 +175,6 @@ function ValiantAimHacks.findDirectionNormalMaterial(Origin, Destination, UnitMu
     return nil
 end
 
-function ValiantAimHacks.FindPlrOnMouse()
-		for i, v in pairs(game.Workspace:FindPartsInRegion3(Region3.new(LocalPlayer:GetMouse().Hit.Position, LocalPlayer:GetMouse().Hit.Position))) do
-			local plr = game.Players:GetPlayerFromCharacter(v.Parent)
-			if plr ~= nil and plr ~= LocalPlayer then
-				return plr
-			end
-		end
-		return nil
-end
-
-
 -- // Get Character
 function ValiantAimHacks.getCharacter(Player)
     return Player.Character
@@ -238,30 +227,20 @@ function ValiantAimHacks.getClosestPlayerToCursor()
             if (circle.Radius > Magnitude and Magnitude < ShortestDistance) then
                 -- // Check if Visible
                 if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then continue end
+
                 -- //
                 ClosestPlayer = Player
                 ShortestDistance = Magnitude
-                -- // OnKeyPress Select Individual player
-                if ValiantAimHacks.lkey ~= nil then 
-                Mouse.KeyUp:Connect(function(k)
-                    if k == ValiantAimHacks.lkey then
-                           local  Plr = ValiantAimHacks.FindPlrOnMouse()
-                                					if Plr ~= nil  and Plr.Character and Plr.Character:FindFirstChild("Head") and Plr.Character:FindFirstChild("UpperTorso") then
-                                    					print(Plr.Name .. "Locked")
-                                       	 					elseif k == ValiantAimHacks.ulkey then
-                                     							print(Plr.Name .. "Not Locked")
-                        	end
-						end
-                    end)
-                end
             end
         end
     end
 
     -- // End
-    ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
-end
 
+   repeat wait() ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer) 
+	until wait() (ClosestPlayer.BodyEffects["K.O"].Value == false or ClosestPlayer:FindFirstChild("GRABBING_CONSTRAINT") ~= nil) or ClosestPlayer == nil
+		
+end
 
 -- // Heartbeat Function
 Heartbeat:Connect(function()
