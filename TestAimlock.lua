@@ -238,7 +238,9 @@ function ValiantAimHacks.getClosestPlayerToCursor()
     -- // End
 local Aimlock = ClosestPlayer
 if (ClosestPlayer.Character.BodyEffects["K.O"].Value == true) then
-repeat wait() ValiantAimHacks.Selected = (Chance and Aimlock or LocalPlayer) until wait() (ClosestPlayer.Character.BodyEffects["K.O"].Value == false)
+print(ClosestPlayer)
+repeat wait() ValiantAimHacks.Selected = (Chance and Aimlock or LocalPlayer) until wait() (ValiantAimHacks.Selected.Character.BodyEffects["K.O"].Value == false)
+print(ValiantAimHacks.Selected)
 end
 end
 
