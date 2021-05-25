@@ -238,7 +238,7 @@ function ValiantAimHacks.getClosestPlayerToCursor()
     -- // End
 
    repeat wait() ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer) 
-	until wait() (ClosestPlayer.BodyEffects["K.O"].Value == true or ClosestPlayer:FindFirstChild("GRABBING_CONSTRAINT") == nil or ClosestPlayer == nil)
+	until wait() (ClosestPlayer.Character.BodyEffects["K.O"].Value == true or ClosestPlayer == nil)
 		
 end
 
