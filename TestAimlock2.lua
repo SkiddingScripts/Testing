@@ -183,7 +183,7 @@ function ValiantAimHacks.FindPlrOnMouse()
 			end
 		end
 		return nil
-	end
+end
 
 
 -- // Get Character
@@ -247,9 +247,9 @@ function ValiantAimHacks.getClosestPlayerToCursor()
                     if k == ValiantAimHacks.lkey then
                            local  Plr = ValiantAimHacks.FindPlrOnMouse()
                                 					if Plr ~= nil  and Plr.Character and Plr.Character:FindFirstChild("Head") and Plr.Character:FindFirstChild("UpperTorso") then
-                                    					print(Plr .. "Locked")
+                                    					print(Plr.Name .. "Locked")
                                        	 					elseif k == ValiantAimHacks.ulkey then
-                                     							print(Plr .. "Not Locked")
+                                     							print(Plr.Name .. "Not Locked")
                         	end
 						end
                     end)
