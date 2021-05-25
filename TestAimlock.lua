@@ -236,10 +236,8 @@ function ValiantAimHacks.getClosestPlayerToCursor()
     end
 
     -- // End
-
-   repeat wait() ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer) 
-	until wait() (ClosestPlayer.Character.BodyEffects["K.O"].Value == true or ClosestPlayer == nil)
-		
+print(ClosestPlayer)
+ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer) 
 end
 
 -- // Heartbeat Function
