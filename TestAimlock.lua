@@ -240,6 +240,7 @@ local Aimlock = ClosestPlayer
 if (ClosestPlayer.BodyEffects["K.O"].Value == true) then
 repeat wait() ValiantAimHacks.Selected = (Chance and Aimlock or LocalPlayer) until wait() (ClosestPlayer.BodyEffects["K.O"].Value == false)
 end
+end
 
 
 -- // Heartbeat Function
