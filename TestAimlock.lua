@@ -231,24 +231,23 @@ function ValiantAimHacks.getClosestPlayerToCursor()
                 -- //
                 ClosestPlayer = Player
                 ShortestDistance = Magnitude
+					local AimPlayer = nil
+					if ClosestPlayer.Character.BodyEffects["K.O"].Value == false or ClosestPlayer.Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil then
+						   AimPlayer = ClosestPlayer
+						repeat wait() ValiantAimHacks.Selected = (Chance and AimPlayer or LocalPlayer) until wait() AimPlayer.Character.BodyEffects["K.O"].Value = true
+					end
             end
         end
     end
 
     -- // End
-local Aimlock = ClosestPlayer
-print(ClosestPlayer)
-if (ClosestPlayer.Character.BodyEffects["K.O"].Value == true) then
-repeat wait() ValiantAimHacks.Selected = (Chance and Aimlock or LocalPlayer) until wait() (ValiantAimHacks.Selected.Character.BodyEffects["K.O"].Value == false)
-print(ValiantAimHacks.Selected)
+    ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
 end
-end
-
 
 -- // Heartbeat Function
 Heartbeat:Connect(function()
     ValiantAimHacks.updateCircle()
-    ValiantAimHacks.getClosestPlayerToCursor()
+     ValiantAimHacks.getClosestPlayerToCursor()
 end)
 
 return ValiantAimHacks
