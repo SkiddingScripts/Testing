@@ -247,8 +247,6 @@ if target ~= nil then
 --print(target)
 if target.Character.BodyEffects["K.O"].Value == false or target.Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil then
 ValiantAimHacks.Selected = (chance and target and LocalPlayer)
-elseif target == nil or target.Character.BodyEffects["K.O"].Value == true or target.Character:FindFirstChild("GRABBING_CONSTRAINT") == nil then
-ValiantAimHacks.Selected = (chance and target and LocalPlayer)
 end
 end
 end
