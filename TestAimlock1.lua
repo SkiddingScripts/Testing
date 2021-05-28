@@ -235,17 +235,17 @@ function ValiantAimHacks.getClosestPlayerToCursor()
         end
     end
 
-		return ClosestPlayer
+		return (Chance and ClosestPlayer and LocalPlayer)
     -- // End
     -- ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
 end
 
 function ValiantAimHacks.UntilDead()
 local ClosestBruh = ValiantAimHacks.getClosestPlayerToCursor()
+local chance, target, LocalPlayer = ValiantAimHacks.getClosestPlayerToCursor()
 if ClosestBruh ~= nil then
-local target = ValiantAimHacks.getClosestPlayerToCursor()
 if target.Character.BodyEffects["K.O"].Value == false or target.Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil then
-ValiantAimHacks.Selected = (ClosestBruh.Chance and target and LocalPlayer)
+ValiantAimHacks.Selected = (chance and target and LocalPlayer)
 print(target.Name)
 end
 end
