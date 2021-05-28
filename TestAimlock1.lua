@@ -232,11 +232,10 @@ function ValiantAimHacks.getClosestPlayerToCursor()
              	ClosestPlayer = Player
                 ShortestDistance = Magnitude
 				print(ClosestPlayer)
+				return (Chance and ClosestPlayer and LocalPlayer)
             end
         end
     end
-
-		return (Chance and ClosestPlayer and LocalPlayer)
     -- // End
     -- ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
 end
