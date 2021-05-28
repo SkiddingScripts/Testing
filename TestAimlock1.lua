@@ -229,12 +229,13 @@ function ValiantAimHacks.getClosestPlayerToCursor()
                 if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then continue end
 
                 -- //
-                ClosestPlayer = Player
+             	ClosestPlayer = Player
                 ShortestDistance = Magnitude
             end
         end
     end
 
+		return ClosestPlayer
     -- // End
     -- ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
 end
