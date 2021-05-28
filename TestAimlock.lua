@@ -245,7 +245,7 @@ local ClosestBruh = ValiantAimHacks.getClosestPlayerToCursor()
 local chance, target, LocalPlayer = ValiantAimHacks.getClosestPlayerToCursor()
 if target ~= nil then
 --print(target)
-if target.Character.BodyEffects["K.O"].Value == false or target.Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil then
+if target.Character.BodyEffects["K.O"].Value == false then
 ValiantAimHacks.Selected = (chance and target or LocalPlayer)
 print(target)
 end
