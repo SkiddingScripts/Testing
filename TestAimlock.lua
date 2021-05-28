@@ -285,7 +285,7 @@ end
 -- // Heartbeat Function
 Heartbeat:Connect(function()
     ValiantAimHacks.updateCircle()
-	ValiantAimHacks.getClosestPlayerToCursor()
+	ValiantAimHacks.TargetPlayer()
 end)
 
 return ValiantAimHacks
