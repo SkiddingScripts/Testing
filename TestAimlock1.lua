@@ -245,10 +245,10 @@ function ValiantAimHacks.UntilDead()
 local ClosestBruh = ValiantAimHacks.getClosestPlayerToCursor()
 local chance, target, LocalPlayer = ValiantAimHacks.getClosestPlayerToCursor()
 if target ~= nil then
-print(target)
-if target.Character.BodyEffects["K.O"].Value == false or target.Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil then
-ValiantAimHacks.Selected = (chance and target and LocalPlayer)
-end
+--print(target)
+--if target.Character.BodyEffects["K.O"].Value == false or target.Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil then
+--ValiantAimHacks.Selected = (chance and target and LocalPlayer)
+--end
 end
 end
 
