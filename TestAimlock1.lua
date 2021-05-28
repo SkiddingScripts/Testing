@@ -278,9 +278,10 @@ if Player ~= nil and Player.Character.BodyEffects["K.O"].Value == false and Vali
 print("Ok wow" .. tostring(Player))
 ValiantAimHacks.Selected = Player
 else
-print("hi")
 ValiantAimHacks.getClosestPlayerToCursor()
-print(ValiantAimHacks.SelectedPlayer)
+if ValiantAimHacks.Selected ~= nil then
+print(ValiantAimHacks.Selected)
+end
 end
 end
 
