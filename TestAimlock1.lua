@@ -237,17 +237,55 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 
     -- // End
     ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
+return (Chance and ClosestPlayer and LocalPlayer)
 end
 
-Mouse.KeyUp:Connect(function(k)
-if k == "e" then
+function ValiantAimHacks.isRadius(Player)
+-- // Vars
+local ShortestDistance = 1/0
+while Player ~= nil do
+wait()
+    -- // Loop through all players
+        local Character = ValiantAimHacks.getCharacter(Player)
+
+        if (not ValiantAimHacks.checkWhitelisted(Player) and ValiantAimHacks.checkPlayer(Player) and Character and Character:FindFirstChild(ValiantAimHacks.TargetPart) and ValiantAimHacks.checkHealth(Player)) then
+            -- // Team Check
+            if (ValiantAimHacks.TeamCheck and not ValiantAimHacks.checkTeam(Player, LocalPlayer)) then continue end
+
+            -- // Vars
+            local TargetPart = Character[ValiantAimHacks.TargetPart]
+            local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
+            local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
+
+            -- // Check if is in FOV
+            if (circle.Radius > Magnitude and Magnitude < ShortestDistance) then
+                -- // Check if Visible
+                if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then
+					return true
+					else
+					return false
+					end
+				 end
+				else return false
+        end
+    end
+end
+
+function ValiantAimHacks.TargetPlayer()
+ValiantAimHacks.getClosestPlayerToCursor()
+print(ValiantAimHacks.Selected)
+local Player = ValiantAimHacks.Selected
+if Player ~= nil and Player.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.isRadius(Player) then
+ValiantAimHacks.Selected = Player
+else
 ValiantAimHacks.getClosestPlayerToCursor()
 end
-end)
+end
 
 -- // Heartbeat Function
 Heartbeat:Connect(function()
     ValiantAimHacks.updateCircle()
+	ValiantAimHacks.getClosestPlayerToCursor()
 end)
 
 return ValiantAimHacks
