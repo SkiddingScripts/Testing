@@ -260,9 +260,9 @@ wait()
             if (circle.Radius > Magnitude and Magnitude < ShortestDistance) then
                 -- // Check if Visible
                 if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then
-					return true
-					else
 					return false
+					else
+					return true
 					end
 				 end
 				else return false
