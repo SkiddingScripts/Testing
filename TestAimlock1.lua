@@ -244,7 +244,8 @@ function ValiantAimHacks.UntilDead()
 local ClosestBruh = ValiantAimHacks.getClosestPlayerToCursor()
 local chance, target, LocalPlayer = ValiantAimHacks.getClosestPlayerToCursor()
 -- print("Made it to line 246 probably target is nil??")
-if target.Character.BodyEffects["K.O"].Value == false then
+print(tostring(target.Character.BodyEffects["K.O"].Value)) if target.Character.BodyEffects["K.O"].Value == false then
+print("You got here 248")
 ValiantAimHacks.Selected = (chance and target or LocalPlayer)
 end
 end
