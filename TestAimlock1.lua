@@ -231,11 +231,11 @@ function ValiantAimHacks.getClosestPlayerToCursor()
                 -- //
              	ClosestPlayer = Player
                 ShortestDistance = Magnitude
-			--	print(ClosestPlayer)
-				return (Chance and ClosestPlayer and LocalPlayer)
             end
         end
     end
+
+		return (Chance and ClosestPlayer and LocalPlayer)
     -- // End
     -- ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
 end
@@ -243,13 +243,14 @@ end
 function ValiantAimHacks.UntilDead()
 local ClosestBruh = ValiantAimHacks.getClosestPlayerToCursor()
 local chance, target, LocalPlayer = ValiantAimHacks.getClosestPlayerToCursor()
--- print("Made it to line 246 probably target is nil??")
+if target ~= nil then
 print(target)
-if target.Character.BodyEffects["K.O"].Value == false then
-print("You got here 248")
-ValiantAimHacks.Selected = (chance and target or LocalPlayer)
+if target.Character.BodyEffects["K.O"].Value == false or target.Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil then
+ValiantAimHacks.Selected = (chance and target and LocalPlayer)
 end
-end 
+end
+end
+
 -- // Heartbeat Function
 Heartbeat:Connect(function()
     ValiantAimHacks.updateCircle()
