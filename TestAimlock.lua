@@ -239,6 +239,8 @@ function ValiantAimHacks.getClosestPlayerToCursor()
     ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
 end
 
+
+
 function ValiantAimHacks.isRadius(Player)
 -- // Vars
 local ShortestDistance = 1/0
@@ -257,7 +259,7 @@ wait()
             local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
 
             -- // Check if is in FOV
-            if (circle.Radius > Magnitude and Magnitude < ShortestDistance) then
+            if (circle.Radius > Magnitude) then
                 -- // Check if Visible
                 if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then
 							return true
@@ -267,10 +269,17 @@ wait()
     end
 end
 
+function ValiantAimHacks.isTest(plr)
+if plr ~= nil then
+return true
+end
+end
+
 
 function ValiantAimHacks.TargetPlayer()
 local Player = ValiantAimHacks.Selected
-if Player ~= nil and Player.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.isRadius(Player) then
+print(ValiantAimHacks.isTest(Player))
+if Player ~= nil and Player.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.isTest(Player) then
 ValiantAimHacks.Selected = Player
 print(tostring(ValiantAimHacks.Selected))
 print(ValiantAimHacks.Selected.Name)
