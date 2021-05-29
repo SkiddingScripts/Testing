@@ -276,9 +276,9 @@ function ValiantAimHacks.TargetPlayer()
 local Player = ValiantAimHacks.Selected
 if Player ~= nil and Player.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.isRadius(Player) then
 ValiantAimHacks.Selected = Player
---print(tostring(ValiantAimHacks.Selected))
---print(ValiantAimHacks.Selected.Name)
---print(tostring(Player))
+print(tostring(ValiantAimHacks.Selected))
+print(ValiantAimHacks.Selected.Name)
+print(tostring(Player))
 else
 ValiantAimHacks.getClosestPlayerToCursor()
 end
