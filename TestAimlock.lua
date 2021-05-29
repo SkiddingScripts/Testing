@@ -277,6 +277,10 @@ print(ValiantAimHacks.Selected.Name)
 print(tostring(Player))
 else
 ValiantAimHacks.getClosestPlayerToCursor()
+ValiantAimHacks.Selected = Player
+print(tostring(ValiantAimHacks.Selected))
+print(ValiantAimHacks.Selected.Name)
+print(tostring(Player))
 end
 end
 
