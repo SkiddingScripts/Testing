@@ -269,21 +269,16 @@ wait()
     end
 end
 
-function ValiantAimHacks.isTest(plr)
-if plr ~= nil then
-return true
-end
-end
 
 
 function ValiantAimHacks.TargetPlayer()
 local Player = ValiantAimHacks.Selected
-print(ValiantAimHacks.isTest(Player))
-if Player ~= nil and Player.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.isTest(Player) then
+print(ValiantAimHacks.isRadius(Player))
+if Player ~= nil and Player.Character.BodyEffects["K.O"].Value == false then
 ValiantAimHacks.Selected = Player
-print(tostring(ValiantAimHacks.Selected))
-print(ValiantAimHacks.Selected.Name)
-print(tostring(Player))
+--print(tostring(ValiantAimHacks.Selected))
+--print(ValiantAimHacks.Selected.Name)
+--print(tostring(Player))
 else
 ValiantAimHacks.getClosestPlayerToCursor()
 end
