@@ -269,11 +269,12 @@ end
 
 
 function ValiantAimHacks.TargetPlayer()
-print(tostring(ValiantAimHacks.Selected))
-print(ValiantAimHacks.Selected.Name)
 local Player = ValiantAimHacks.Selected
 if Player ~= nil and not LocalPlayer and Player.Character.BodyEffects["K.O"].Value == false then
 ValiantAimHacks.Selected = Player
+print(tostring(ValiantAimHacks.Selected))
+print(ValiantAimHacks.Selected.Name)
+print(tostring(Player))
 else
 ValiantAimHacks.getClosestPlayerToCursor()
 end
