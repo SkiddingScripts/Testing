@@ -267,7 +267,6 @@ wait()
     end
 end
 
-ValiantAimHacks.getClosestPlayerToCursor()
 
 function ValiantAimHacks.TargetPlayer()
 local Player = ValiantAimHacks.Selected
