@@ -270,7 +270,7 @@ end
 
 function ValiantAimHacks.TargetPlayer()
 local Player = ValiantAimHacks.Selected
-if not LocalPlayer and Player.Character.BodyEffects["K.O"].Value == false then
+if Player ~= nil and Player.Character.BodyEffects["K.O"].Value == false then
 ValiantAimHacks.Selected = Player
 print(tostring(ValiantAimHacks.Selected))
 print(ValiantAimHacks.Selected.Name)
