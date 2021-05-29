@@ -236,7 +236,7 @@ function ValiantAimHacks.getClosestPlayerToCursor()
     end
 
     -- // End
-    ValiantAimHacks.Selected = (Chance and ClosestPlayer)
+    ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
 end
 
 function ValiantAimHacks.isRadius(Player)
@@ -269,9 +269,6 @@ end
 
 
 function ValiantAimHacks.TargetPlayer()
-if ValiantAimHacks.Selected == nil then
-ValiantAimHacks.getClosestPlayerToCursor()
-end
 local Player = ValiantAimHacks.Selected
 if Player ~= nil and not LocalPlayer and Player.Character.BodyEffects["K.O"].Value == false then
 ValiantAimHacks.Selected = Player
