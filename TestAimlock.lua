@@ -274,10 +274,7 @@ end
 
 function ValiantAimHacks.TargetPlayer()
 local Player = ValiantAimHacks.Selected
-if ValiantAimHacks.isRadius(Player) then
-print(ValiantAimHacks.isRadius(Player))
-end
-if Player ~= nil and Player.Character.BodyEffects["K.O"].Value == false then
+if Player ~= nil and Player.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.isRadius(Player) then
 ValiantAimHacks.Selected = Player
 --print(tostring(ValiantAimHacks.Selected))
 --print(ValiantAimHacks.Selected.Name)
