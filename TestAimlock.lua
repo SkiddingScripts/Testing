@@ -260,12 +260,9 @@ wait()
             if (circle.Radius > Magnitude and Magnitude < ShortestDistance) then
                 -- // Check if Visible
                 if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then
-					return false
-					else
-					return true
+							return true
 					end
 				 end
-				else return true
         end
     end
 end
@@ -275,7 +272,6 @@ ValiantAimHacks.getClosestPlayerToCursor()
 function ValiantAimHacks.TargetPlayer()
 local Player = ValiantAimHacks.Selected
 if Player ~= nil and Player.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.isRadius(Player) then
-print(ValiantAimHacks.isRadius(Player))
 ValiantAimHacks.Selected = Player
 else
 ValiantAimHacks.getClosestPlayerToCursor()
