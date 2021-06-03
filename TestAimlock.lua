@@ -249,7 +249,7 @@ end
 
 function ValiantAimHacks.ChangePlayer()
 local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
-if Selected ~= nil and Selected ~= LocalPlayer and Selected.BodyEffects["K.O"].Value == false then
+if Selected ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false then
 ValiantAimHacks.Selected = (Chance and Selected or Me)
 else
 ValiantAimHacks.Selected = (Me)
