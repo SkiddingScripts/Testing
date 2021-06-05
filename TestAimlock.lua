@@ -99,9 +99,10 @@ function ValiantAimHacks.isPartVisible(Part, PartDescendant)
         raycastParams.FilterDescendantsInstances = ignoretable
 	
 		for i, player in pairs(Players:GetPlayers()) do
+		print(player)
    		table.insert(ignoretable, player.Character)
 		end
-
+		print(ignoretable)
         local Result = Workspace:Raycast(Origin, Part.Position - Origin, raycastParams)
         local PartHit = Result.Instance
         local Visible = (not PartHit or PartHit:IsDescendantOf(PartDescendant))
