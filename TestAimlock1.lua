@@ -246,13 +246,13 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 -- ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
 end
 
+local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 
 function ValiantAimHacks.ChangePlayer()
-local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 if Selected ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false then
 ValiantAimHacks.Selected = (Chance and Selected or Me)
 else
-ValiantAimHacks.Selected = (Me)
+local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 end
 end
 
