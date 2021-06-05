@@ -253,13 +253,22 @@ local Character = ValiantAimHacks.getCharacter(Player)
             local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
 			local Check = (circle.Radius > Magnitude)
 			local Check2 = (ValiantAimHacks.VisibleCheck and ValiantAimHacks.isPartVisible(TargetPart, Character))
-return (Check and Check2)
+return (Check)
+end
+
+function ValiantAimHacks.Visible(Player)
+local Character = ValiantAimHacks.getCharacter(Player)
+ local TargetPart = Character[ValiantAimHacks.TargetPart]
+            local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
+            local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
+			local Check = (ValiantAimHacks.VisibleCheck and ValiantAimHacks.isPartVisible(TargetPart, Character))
+return (Check)
 end
 
 function ValiantAimHacks.ChangePlayer()
 -- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 local Selected = ValiantAimHacks.Selected
-if Selected ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
+if Selected ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and ValiantAimHacks.Visible(Selected) then
 ValiantAimHacks.Selected = (Selected or LocalPlayer)
 else
 ValiantAimHacks.getClosestPlayerToCursor()
