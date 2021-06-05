@@ -273,8 +273,10 @@ if Selected ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffect
 print("worked")
 ValiantAimHacks.Selected = (Selected or LocalPlayer)
 else
+print("not work xd")
 ValiantAimHacks.getClosestPlayerToCursor()
 end
+print("nil")
 else ValiantAimHacks.getClosestPlayerToCursor()
 end 
 end
