@@ -260,7 +260,7 @@ local Character = ValiantAimHacks.getCharacter(Player)
  local TargetPart = Character[ValiantAimHacks.TargetPart]
             local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
             local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
-			if (ValiantAimHacks.VisibleCheck and ValiantAimHacks.isPartVisible(TargetPart, Character)) then return true end
+			if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then return true end
 end
 
 
