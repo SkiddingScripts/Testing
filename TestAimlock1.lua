@@ -255,6 +255,15 @@ local Character = ValiantAimHacks.getCharacter(Player)
 return (Check)
 end
 
+function ValiantAimHacks.Visible(Player)
+local Character = ValiantAimHacks.getCharacter(Player)
+ local TargetPart = Character[ValiantAimHacks.TargetPart]
+            local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
+            local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
+				if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then return false end	
+end
+
+
 function ValiantAimHacks.ChangePlayer()
 -- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 local Selected = ValiantAimHacks.Selected
