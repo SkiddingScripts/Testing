@@ -85,6 +85,14 @@ end
 
 -- // Customisable Checking Functions: Is a part visible
 function ValiantAimHacks.isPartVisible(Part, PartDescendant)
+	local ignoredCharacters = {}
+		
+local AllPlayers = Players:GetPlayers()
+ for i = 1, #AllPlayers do
+        local Player = AllPlayers[i]
+        local Character = ValiantAimHacks.getCharacter(Player)
+		table.insert(Character)
+	end
     -- // Vars
     local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
     local Origin = CurrentCamera.CFrame.Position
@@ -95,25 +103,14 @@ function ValiantAimHacks.isPartVisible(Part, PartDescendant)
         -- // Vars: Calculating if is visible
         local raycastParams = RaycastParams.new()
         raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
-        raycastParams.FilterDescendantsInstances = {Character, CurrentCamera}
+        raycastParams.FilterDescendantsInstances = {Character, CurrentCamera, ignoredCharacters}
 
         local Result = Workspace:Raycast(Origin, Part.Position - Origin, raycastParams)
         local PartHit = Result.Instance
-		local AllPlayers = Players:GetPlayers()
-		for i=1, #AllPlayers do
-		local Player = AllPlayers[i]
-        local Character = ValiantAimHacks.getCharacter(Player)
-		if PartHit:isDescendantOf(Character) then
-		return false
-		end
-		end
         local Visible = (not PartHit or PartHit:IsDescendantOf(PartDescendant))
-	--	print(Visible)
         -- // Return
-		print(PartHit.Parent)
         return Visible
     end
-
     -- // Return
     return false
 end
