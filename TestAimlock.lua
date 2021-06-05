@@ -253,7 +253,7 @@ local Character = ValiantAimHacks.getCharacter(Player)
             local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
 			local Check = (circle.Radius > Magnitude)
 			local Check2 = (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character))
-return (Check and Check2)
+return (Check)
 end
 
 function ValiantAimHacks.ChangePlayer()
