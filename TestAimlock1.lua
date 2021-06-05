@@ -253,6 +253,8 @@ local Character = ValiantAimHacks.getCharacter(Player)
             local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
 			local Check = (circle.Radius > Magnitude)
 			local Check2 = (ValiantAimHacks.isPartVisible(TargetPart, Character))
+			print(tostring(Check2) .. "is visible bruh")
+			print(tostring(Check) .. "is in radius bruh")
 return (Check and Check2)
 end
 
