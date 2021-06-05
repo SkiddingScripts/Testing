@@ -246,11 +246,19 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 return Chance, ClosestPlayer, LocalPlayer
 end
 
+function ValiantAimHacks.Radius(Player)
+local Character = ValiantAimHacks.getCharacter(Player)
+ local TargetPart = Character[ValiantAimHacks.TargetPart]
+            local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
+            local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
+			local Check = (circle.Radius > Magnitude)
+return Check
+end
 
 function ValiantAimHacks.ChangePlayer()
 -- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 local Selected = ValiantAimHacks.Selected
-if Selected ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false then
+if Selected ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
 ValiantAimHacks.Selected = (Selected or LocalPlayer)
 else
 ValiantAimHacks.getClosestPlayerToCursor()
