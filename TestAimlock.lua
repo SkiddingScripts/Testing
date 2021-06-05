@@ -100,8 +100,9 @@ function ValiantAimHacks.isPartVisible(Part, PartDescendant)
         local Result = Workspace:Raycast(Origin, Part.Position - Origin, raycastParams)
         local PartHit = Result.Instance
         local Visible = (not PartHit or PartHit:IsDescendantOf(PartDescendant))
-		print(Visible)
+	--	print(Visible)
         -- // Return
+		print(PartHit)
         return Visible
     end
 
@@ -271,7 +272,6 @@ if Selected ~= nil then
 --local Character = ValiantAimHacks.getCharacter(Selected)
 --local TargetPart = Character[ValiantAimHacks.TargetPart]
 if Selected ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and ValiantAimHacks.Visible(Selected) then
-print("worked")
 ValiantAimHacks.Selected = (Selected or LocalPlayer)
 else
 ValiantAimHacks.getClosestPlayerToCursor()
