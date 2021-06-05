@@ -99,7 +99,7 @@ function ValiantAimHacks.isPartVisible(Part, PartDescendant)
 
         local Result = Workspace:Raycast(Origin, Part.Position - Origin, raycastParams)
         local PartHit = Result.Instance
-        local Visible = (not PartHit or PartHit:IsDescendantOf(PartDescendant))
+        local Visible = (not PartHit or PartHit:IsDescendantOf(PartDescendant) or not PartHit.Parent:FindFirstChild("Humanoid"))
 	--	print(Visible)
         -- // Return
 		print(PartHit)
