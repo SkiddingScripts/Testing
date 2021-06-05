@@ -91,7 +91,7 @@ local AllPlayers = Players:GetPlayers()
  for i = 1, #AllPlayers do
         local Player = AllPlayers[i]
         local Character = ValiantAimHacks.getCharacter(Player)
-		table.insert(Character)
+		table.insert(ignoredCharacters, Character)
 	end
     -- // Vars
     local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
