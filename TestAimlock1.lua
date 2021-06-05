@@ -261,7 +261,7 @@ function ValiantAimHacks.ChangePlayer()
 local Selected = ValiantAimHacks.Selected
 local Character = ValiantAimHacks.getCharacter(Selected)
 local TargetPart = Character[ValiantAimHacks.TargetPart]
-local vCheck = ValiantAimHacks.isPartVisible(TargetPart, Character)
+local vCheck = not ValiantAimHacks.isPartVisible(TargetPart, Character)
 if Selected ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and vCheck then
 ValiantAimHacks.Selected = (Selected or LocalPlayer)
 else
