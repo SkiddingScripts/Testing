@@ -276,7 +276,7 @@ else
 ValiantAimHacks.getClosestPlayerToCursor()
 end
 else ValiantAimHacks.getClosestPlayerToCursor()
-end
+end 
 end
 -- // Heartbeat Function
 Heartbeat:Connect(function()
