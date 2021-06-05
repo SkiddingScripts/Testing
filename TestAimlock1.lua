@@ -270,7 +270,7 @@ local Selected = ValiantAimHacks.Selected
 if Selected ~= nil then
 local Character = ValiantAimHacks.getCharacter(Selected)
 local TargetPart = Character[ValiantAimHacks.TargetPart]
-if Selected ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
+if Selected ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and ValiantAimHacks.Visible(TargetPart, Character) then
 ValiantAimHacks.Selected = (Selected or LocalPlayer)
 else
 ValiantAimHacks.getClosestPlayerToCursor()
