@@ -76,6 +76,11 @@ function ValiantAimHacks.updateCircle()
     end
 end
 
+-- // Get Character
+function ValiantAimHacks.getCharacter(Player)
+    return Player.Character
+end
+
 -- // Custom Functions
 calcChance = function(percentage)
     percentage = math.floor(percentage)
@@ -95,7 +100,8 @@ function ValiantAimHacks.isPartVisible(Part, PartDescendant)
 			 for i = 1, #AllPlayers do
       		 local Player = AllPlayers[i]
         	local PlrCharacter = ValiantAimHacks.getCharacter(Player)
-			table.insert(ignoredCharacters, PlrCharacter)
+			local ignorebruh = PlrCharacter:GetChildren()
+			table.insert(ignoredCharacters, ignorebruh)
 			end
     -- // If Part is on the screen
     if (OnScreen) then
@@ -181,11 +187,6 @@ function ValiantAimHacks.findDirectionNormalMaterial(Origin, Destination, UnitMu
 
     -- // Return
     return nil
-end
-
--- // Get Character
-function ValiantAimHacks.getCharacter(Player)
-    return Player.Character
 end
 
 -- // Check Health
