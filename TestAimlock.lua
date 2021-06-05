@@ -267,6 +267,7 @@ end
 function ValiantAimHacks.ChangePlayer()
 -- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 local Selected = ValiantAimHacks.Selected
+if Selected ~= nil then
 local Character = ValiantAimHacks.getCharacter(Selected)
 local TargetPart = Character[ValiantAimHacks.TargetPart]
 if Selected ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
@@ -274,8 +275,9 @@ ValiantAimHacks.Selected = (Selected or LocalPlayer)
 else
 ValiantAimHacks.getClosestPlayerToCursor()
 end
+else ValiantAimHacks.getClosestPlayerToCursor()
 end
-
+end
 -- // Heartbeat Function
 Heartbeat:Connect(function()
     ValiantAimHacks.updateCircle()
