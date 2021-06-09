@@ -36,8 +36,6 @@ local FindFirstChild = Instancenew("Part").FindFirstChild
 local AimParts = {
 "Head",
 "UpperTorso",
-"LowerTorso",
-"Head",
 }
 
 -- // Silent Aim Vars
@@ -59,7 +57,6 @@ getgenv().ValiantAimHacks = {
     BlacklistedPlayers = {LocalPlayer},
     WhitelistedPUIDs = {91318356},
 }
-
 
 
 
@@ -253,6 +250,7 @@ end
 Heartbeat:Connect(function()
     ValiantAimHacks.updateCircle()
     ValiantAimHacks.getClosestPlayerToCursor()
+	ValiantAimHacks.TargetPart = (AimParts[math.random(#AimParts)])
 end)
 
 return ValiantAimHacks
