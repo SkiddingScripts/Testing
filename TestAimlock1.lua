@@ -63,7 +63,7 @@ local ValiantAimHacks = getgenv().ValiantAimHacks
 
 while ValiantAimHacks.SilentAimEnabled do
 wait(.0005)
-ValiantAimHacks.TargetPart = (AimParts[math.random(#AimParts)])
+ValiantAimHacks.TargetPart = "UpperTorso"
 end
 
 -- // Show FOV
