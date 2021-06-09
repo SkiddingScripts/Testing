@@ -224,7 +224,6 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 
             -- // Vars
             local TargetPart = Character[ValiantAimHacks.TargetPart]
-			print(TargetPart)
             local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
             local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
 
