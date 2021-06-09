@@ -47,7 +47,7 @@ getgenv().ValiantAimHacks = {
     FOV = 60,
     HitChance = 100,
     Selected = LocalPlayer,
-    TargetPart = (AimParts[math.random(2)]),
+    TargetPart = (AimParts[math.random(#AimParts)]),
     BlacklistedTeams = {
         {
             Team = LocalPlayer.Team,
