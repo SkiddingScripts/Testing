@@ -33,9 +33,9 @@ local IsDescendantOf = Instancenew("Part").IsDescendantOf
 local FindFirstChildWhichIsA = Instancenew("Part").FindFirstChildWhichIsA
 local FindFirstChild = Instancenew("Part").FindFirstChild
 
-local AimParts = {
-"LowerTorso",
-}
+-- local AimParts = {
+-- "LowerTorso",
+-- }
 
 -- // Silent Aim Vars
 getgenv().ValiantAimHacks = {
@@ -46,7 +46,7 @@ getgenv().ValiantAimHacks = {
     FOV = 60,
     HitChance = 100,
     Selected = LocalPlayer,
-    TargetPart = (AimParts[math.random(3)]),
+    TargetPart = "LowerTorso",
     BlacklistedTeams = {
         {
             Team = LocalPlayer.Team,
