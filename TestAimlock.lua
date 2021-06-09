@@ -64,6 +64,7 @@ local ValiantAimHacks = getgenv().ValiantAimHacks
 while ValiantAimHacks.SilentAimEnabled do
 wait(.0005)
 local key = math.random(1,2)
+print(key)
 if key == 1 then
 print("Head time")
 ValiantAimHacks.TargetPart = "Head"
