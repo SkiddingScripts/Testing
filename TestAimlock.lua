@@ -59,8 +59,13 @@ getgenv().ValiantAimHacks = {
 }
 
 
-
 local ValiantAimHacks = getgenv().ValiantAimHacks
+
+while ValiantAimHacks.SilentAimEnabled do
+wait(.0005)
+ValiantAimHacks.TargetPart = (AimParts[math.random(#AimParts)])
+end
+
 -- // Show FOV
 local circle = Drawingnew("Circle")
 circle.Transparency = 1
@@ -250,7 +255,6 @@ end
 Heartbeat:Connect(function()
     ValiantAimHacks.updateCircle()
     ValiantAimHacks.getClosestPlayerToCursor()
-	ValiantAimHacks.TargetPart = (AimParts[math.random(#AimParts)])
 end)
 
 return ValiantAimHacks
