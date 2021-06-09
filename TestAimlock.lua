@@ -32,25 +32,7 @@ local Instancenew = Instance.new
 local IsDescendantOf = Instancenew("Part").IsDescendantOf
 local FindFirstChildWhichIsA = Instancenew("Part").FindFirstChildWhichIsA
 local FindFirstChild = Instancenew("Part").FindFirstChild
-local Crip = nil
 
-local AimParts = {
-"Head",
-"UpperTorso",
-}
-
-while true do
-wait()
-wait(.0005)
-local key = math.random(1,2)
-print(key)
-if key == 1 then
-print("Head time")
-Crip = "Head"
-elseif key == 2 then Crip = "UpperTorso"
-print("Wow it choose this")
-end
-end
 
 -- // Silent Aim Vars
 getgenv().ValiantAimHacks = {
@@ -61,7 +43,7 @@ getgenv().ValiantAimHacks = {
     FOV = 60,
     HitChance = 100,
     Selected = LocalPlayer,
-    TargetPart = Crip,
+    TargetPart = "Head",
     BlacklistedTeams = {
         {
             Team = LocalPlayer.Team,
