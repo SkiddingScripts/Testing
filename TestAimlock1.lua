@@ -65,8 +65,10 @@ while ValiantAimHacks.SilentAimEnabled do
 wait(.0005)
 local key = math.random(1,2)
 if key == 1 then
+print("Head time")
 ValiantAimHacks.TargetPart = "Head"
 elseif key == 2 then ValiantAimHacks.TargetPart = "UpperTorso"
+print("Wow it choose this")
 end
 end
 
