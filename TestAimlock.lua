@@ -36,6 +36,7 @@ local FindFirstChild = Instancenew("Part").FindFirstChild
 local AimParts = {
 "Head",
 "UpperTorso",
+"LowerTorso",
 }
 
 -- // Silent Aim Vars
@@ -101,13 +102,15 @@ function ValiantAimHacks.isPartVisible(Part, PartDescendant)
         local raycastParams = RaycastParams.new()
         raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
         raycastParams.FilterDescendantsInstances = {Character, CurrentCamera}
-	
+
         local Result = Workspace:Raycast(Origin, Part.Position - Origin, raycastParams)
         local PartHit = Result.Instance
         local Visible = (not PartHit or PartHit:IsDescendantOf(PartDescendant))
+
         -- // Return
         return Visible
     end
+
     -- // Return
     return false
 end
@@ -200,8 +203,6 @@ function ValiantAimHacks.checkSilentAim()
     return (ValiantAimHacks.SilentAimEnabled == true and ValiantAimHacks.Selected ~= LocalPlayer)
 end
 
-local isinRadius = nil
-
 -- // Silent Aim Function
 function ValiantAimHacks.getClosestPlayerToCursor()
     -- // Vars
@@ -228,14 +229,15 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 
             -- // Vars
             local TargetPart = Character[ValiantAimHacks.TargetPart]
+			print(TargetPart)
             local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
             local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
 
             -- // Check if is in FOV
             if (circle.Radius > Magnitude and Magnitude < ShortestDistance) then
                 -- // Check if Visible
-                if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then continue  end
-				
+                if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then continue end
+
                 -- //
                 ClosestPlayer = Player
                 ShortestDistance = Magnitude
@@ -243,51 +245,14 @@ function ValiantAimHacks.getClosestPlayerToCursor()
         end
     end
 
-
-
- ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
-return Chance, ClosestPlayer, LocalPlayer
+    -- // End
+    ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
 end
 
-function ValiantAimHacks.Radius(Player)
-local Character = ValiantAimHacks.getCharacter(Player)
- local TargetPart = Character[ValiantAimHacks.TargetPart]
-            local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
-            local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
-			local Check = (circle.Radius > Magnitude)
-return (Check)
-end
-
-function ValiantAimHacks.Visible(Player)
-local Character = ValiantAimHacks.getCharacter(Player)
- local TargetPart = Character[ValiantAimHacks.TargetPart]
-            local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
-            local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
-			if (ValiantAimHacks.VisibleCheck and ValiantAimHacks.isPartVisible(TargetPart, Character)) then return true end
-end
-
-
-function ValiantAimHacks.ChangePlayer()
--- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
-local Selected = ValiantAimHacks.Selected
-if Selected ~= nil then
---local Character = ValiantAimHacks.getCharacter(Selected)
---local TargetPart = Character[ValiantAimHacks.TargetPart]
-
-
-if Selected ~= nil and Selected.Character.BodyEffects ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and ValiantAimHacks.Visible(Selected) then
-ValiantAimHacks.Selected = (Selected or LocalPlayer)
-else
-ValiantAimHacks.getClosestPlayerToCursor()
-end
-else ValiantAimHacks.getClosestPlayerToCursor()
-end 
-end
 -- // Heartbeat Function
 Heartbeat:Connect(function()
     ValiantAimHacks.updateCircle()
-	ValiantAimHacks.ChangePlayer()
---	ValiantAimHacks.getClosestPlayerToCursor()
+    ValiantAimHacks.getClosestPlayerToCursor()
 end)
 
 return ValiantAimHacks
