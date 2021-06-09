@@ -36,6 +36,8 @@ local FindFirstChild = Instancenew("Part").FindFirstChild
 local AimParts = {
 "Head",
 "UpperTorso",
+"LowerTorso",
+"Head",
 }
 
 -- // Silent Aim Vars
