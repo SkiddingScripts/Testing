@@ -34,8 +34,6 @@ local FindFirstChildWhichIsA = Instancenew("Part").FindFirstChildWhichIsA
 local FindFirstChild = Instancenew("Part").FindFirstChild
 
 local AimParts = {
-"Head",
-"UpperTorso",
 "LowerTorso",
 }
 
