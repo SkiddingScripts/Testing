@@ -33,7 +33,6 @@ local IsDescendantOf = Instancenew("Part").IsDescendantOf
 local FindFirstChildWhichIsA = Instancenew("Part").FindFirstChildWhichIsA
 local FindFirstChild = Instancenew("Part").FindFirstChild
 
-
 -- // Silent Aim Vars
 getgenv().ValiantAimHacks = {
     SilentAimEnabled = true,
@@ -55,9 +54,9 @@ getgenv().ValiantAimHacks = {
 }
 
 
+
+
 local ValiantAimHacks = getgenv().ValiantAimHacks
-
-
 -- // Show FOV
 local circle = Drawingnew("Circle")
 circle.Transparency = 1
@@ -97,15 +96,13 @@ function ValiantAimHacks.isPartVisible(Part, PartDescendant)
         local raycastParams = RaycastParams.new()
         raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
         raycastParams.FilterDescendantsInstances = {Character, CurrentCamera}
-
+	
         local Result = Workspace:Raycast(Origin, Part.Position - Origin, raycastParams)
         local PartHit = Result.Instance
         local Visible = (not PartHit or PartHit:IsDescendantOf(PartDescendant))
-
         -- // Return
         return Visible
     end
-
     -- // Return
     return false
 end
@@ -198,6 +195,8 @@ function ValiantAimHacks.checkSilentAim()
     return (ValiantAimHacks.SilentAimEnabled == true and ValiantAimHacks.Selected ~= LocalPlayer)
 end
 
+local isinRadius = nil
+
 -- // Silent Aim Function
 function ValiantAimHacks.getClosestPlayerToCursor()
     -- // Vars
@@ -230,8 +229,8 @@ function ValiantAimHacks.getClosestPlayerToCursor()
             -- // Check if is in FOV
             if (circle.Radius > Magnitude and Magnitude < ShortestDistance) then
                 -- // Check if Visible
-                if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then continue end
-
+                if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then continue  end
+				
                 -- //
                 ClosestPlayer = Player
                 ShortestDistance = Magnitude
@@ -239,8 +238,10 @@ function ValiantAimHacks.getClosestPlayerToCursor()
         end
     end
 
-    -- // End
-    ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
+
+
+ ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
+return Chance, ClosestPlayer, LocalPlayer
 end
 
 function ValiantAimHacks.Radius(Player)
@@ -269,7 +270,7 @@ if Selected ~= nil then
 --local TargetPart = Character[ValiantAimHacks.TargetPart]
 
 
-if Selected ~= nil and Selected.Character.BodyEffects ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and ValiantAimHacks.Visible(Selected) then
+if Selected ~= nil and Selected.Character.BodyEffects ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
 ValiantAimHacks.Selected = (Selected or LocalPlayer)
 else
 ValiantAimHacks.getClosestPlayerToCursor()
