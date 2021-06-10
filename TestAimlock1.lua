@@ -243,10 +243,45 @@ function ValiantAimHacks.getClosestPlayerToCursor()
     ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
 end
 
+function ValiantAimHacks.Radius(Player)
+local Character = ValiantAimHacks.getCharacter(Player)
+ local TargetPart = Character[ValiantAimHacks.TargetPart]
+            local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
+            local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
+			local Check = (circle.Radius > Magnitude)
+return (Check)
+end
+
+function ValiantAimHacks.Visible(Player)
+local Character = ValiantAimHacks.getCharacter(Player)
+ local TargetPart = Character[ValiantAimHacks.TargetPart]
+            local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
+            local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
+			if (ValiantAimHacks.VisibleCheck and ValiantAimHacks.isPartVisible(TargetPart, Character)) then return true end
+end
+
+
+function ValiantAimHacks.ChangePlayer()
+-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
+local Selected = ValiantAimHacks.Selected
+if Selected ~= nil then
+--local Character = ValiantAimHacks.getCharacter(Selected)
+--local TargetPart = Character[ValiantAimHacks.TargetPart]
+
+
+if Selected ~= nil and Selected.Character.BodyEffects ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and ValiantAimHacks.Visible(Selected) then
+ValiantAimHacks.Selected = (Selected or LocalPlayer)
+else
+ValiantAimHacks.getClosestPlayerToCursor()
+end
+else ValiantAimHacks.getClosestPlayerToCursor()
+end 
+end
 -- // Heartbeat Function
 Heartbeat:Connect(function()
     ValiantAimHacks.updateCircle()
-    ValiantAimHacks.getClosestPlayerToCursor()
+	ValiantAimHacks.ChangePlayer()
+--	ValiantAimHacks.getClosestPlayerToCursor()
 end)
 
 return ValiantAimHacks
