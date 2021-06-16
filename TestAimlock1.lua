@@ -58,20 +58,20 @@ getgenv().ValiantAimHacks = {
 
 local ValiantAimHacks = getgenv().ValiantAimHacks
 
-local Enabled = true
-local StreamProofToggle = false
+-- local Enabled = true
+-- local StreamProofToggle = false
 
-Mouse.KeyDown:Connect(function(k)
-if k == "q" and Enabled then
-ValiantAimHacks.SilentAimEnabled = false
-ValiantAimHacks.ShowFOV = false
-Enabled = false
-elseif k == "q" and not Enabled then
-ValiantAimHacks.SilentAimEnabled = true
-if 	StreamProofToggle then ValiantAimHacks.ShowFOV = false elseif not StreamProofToggle then ValiantAimHacks.ShowFOV = true end
-Enabled = true
-end
-end)
+-- Mouse.KeyDown:Connect(function(k)
+-- if k == "q" and Enabled then
+-- ValiantAimHacks.SilentAimEnabled = false
+-- ValiantAimHacks.ShowFOV = false
+-- Enabled = false
+-- elseif k == "q" and not Enabled then
+-- ValiantAimHacks.SilentAimEnabled = true
+-- if StreamProofToggle then ValiantAimHacks.ShowFOV = false elseif not StreamProofToggle then ValiantAimHacks.ShowFOV = true end
+-- Enabled = true
+-- end
+-- end)
 
 -- // Show FOV
 local circle = Drawingnew("Circle")
