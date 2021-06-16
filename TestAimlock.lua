@@ -215,6 +215,7 @@ local isinRadius = nil
 
 -- // Silent Aim Function
 function ValiantAimHacks.getClosestPlayerToCursor()
+
     -- // Vars
     local ClosestPlayer = nil
     local Chance = calcChance(ValiantAimHacks.HitChance)
@@ -281,7 +282,9 @@ end
 function ValiantAimHacks.ChangePlayer()
 -- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 local Selected = ValiantAimHacks.Selected
-if ValiantAimHacks.SilentAimEnabled then
+if not ValiantAimHacks.SilentAimEnabled then
+ValiantAimHacks.Selected = (LocalPlayer)
+else
 if Selected ~= nil then
 --local Character = ValiantAimHacks.getCharacter(Selected)
 --local TargetPart = Character[ValiantAimHacks.TargetPart]
