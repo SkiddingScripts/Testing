@@ -120,7 +120,7 @@ function ValiantAimHacks.isPartVisible(Part, PartDescendant)
 end
         local raycastParams = RaycastParams.new()
         raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
-        raycastParams.FilterDescendantsInstances =  {Character, CurrentCamera}
+        raycastParams.FilterDescendantsInstances =  list
 		
 	
         local Result = Workspace:Raycast(Origin, Part.Position - Origin, raycastParams)
