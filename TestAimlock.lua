@@ -111,25 +111,20 @@ function ValiantAimHacks.isPartVisible(Part, PartDescendant)
     if (OnScreen) then
         -- // Vars: Calculating if is visible
 	local list = {Character, CurrentCamera}
-	for _,plr in ipairs(game.Players:GetPlayers()) do
-		for i,v in pairs(game.Workspace.Players:GetChildren()) do
-			if v.Name == tostring(plr) then
-				table.insert(list, plr)
-		end
+	for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+		table.insert(list,v.Character)
 	end
-end
         local raycastParams = RaycastParams.new()
         raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
         raycastParams.FilterDescendantsInstances =  list
 		
 	
 		local Result = Workspace:Raycast(Origin, Part.Position - Origin, raycastParams)
-		if Result ~= nil then
+
         local PartHit = Result.Instance
         local Visible = (not PartHit or PartHit:IsDescendantOf(PartDescendant))
         -- // Return
 		return Visible
-		end
     end
     -- // Return
     return false
