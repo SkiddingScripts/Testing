@@ -114,7 +114,7 @@ function ValiantAimHacks.isPartVisible(Part, PartDescendant)
 	for _,plr in ipairs(game.Players:GetPlayers()) do
 		for i,v in pairs(game.Workspace.Players:GetChildren()) do
 			if v.Name == tostring(plr) then
-				table.insert(list, v)
+				table.insert(list, plr)
 		end
 	end
 end
