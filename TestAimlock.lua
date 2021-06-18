@@ -123,11 +123,13 @@ end
         raycastParams.FilterDescendantsInstances =  list
 		
 	
-        local Result = Workspace:Raycast(Origin, Part.Position - Origin, raycastParams)
+		local Result = Workspace:Raycast(Origin, Part.Position - Origin, raycastParams)
+		if Result ~= nil then
         local PartHit = Result.Instance
         local Visible = (not PartHit or PartHit:IsDescendantOf(PartDescendant))
         -- // Return
-        return Visible
+		return Visible
+		end
     end
     -- // Return
     return false
