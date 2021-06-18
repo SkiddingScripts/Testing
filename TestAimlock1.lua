@@ -103,28 +103,21 @@ end
 function ValiantAimHacks.isPartVisible(Part, PartDescendant)
     -- // Vars
     local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-	local otherplr = game.Players:GetPlayers().Character
     local Origin = CurrentCamera.CFrame.Position
     local _, OnScreen = CurrentCamera:WorldToViewportPoint(Part.Position)
 
     -- // If Part is on the screen
     if (OnScreen) then
         -- // Vars: Calculating if is visible
-	local list = {Character, CurrentCamera}
-	for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-		table.insert(list,v.Character)
-	end
         local raycastParams = RaycastParams.new()
         raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
-        raycastParams.FilterDescendantsInstances =  list
-		
+        raycastParams.FilterDescendantsInstances = {Character, CurrentCamera}
 	
-		local Result = Workspace:Raycast(Origin, Part.Position - Origin, raycastParams)
-
+        local Result = Workspace:Raycast(Origin, Part.Position - Origin, raycastParams)
         local PartHit = Result.Instance
         local Visible = (not PartHit or PartHit:IsDescendantOf(PartDescendant))
         -- // Return
-		return Visible
+        return Visible
     end
     -- // Return
     return false
@@ -295,7 +288,7 @@ else
 if Selected ~= nil then
 --local Character = ValiantAimHacks.getCharacter(Selected)
 --local TargetPart = Character[ValiantAimHacks.TargetPart]
-if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and ValiantAimHacks.Visible(Selected) then
+if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
 ValiantAimHacks.Selected = (Selected or LocalPlayer)
 else
 ValiantAimHacks.getClosestPlayerToCursor()
