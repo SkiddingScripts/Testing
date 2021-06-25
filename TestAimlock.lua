@@ -42,6 +42,7 @@ getgenv().ValiantAimHacks = {
 	FOV = 60,
 	HitChance = 100,
 	Selected = LocalPlayer,
+	TracingTarget = LocalPlayer,
 	TargetPart = "Head",
 	BlacklistedTeams = {
 		{
@@ -258,6 +259,7 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 
 
 	ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
+	ValiantAimHacks.TracingTarget = (ClosestPlayer or LocalPlayer)
 	return Chance, ClosestPlayer, LocalPlayer
 end
 
@@ -284,7 +286,7 @@ function ValiantAimHacks.ChangePlayer()
 	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 	local Selected = ValiantAimHacks.Selected
 	local Chance = calcChance(ValiantAimHacks.HitChance)
-if (not Chance) then
+	if (not Chance) then
 		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
 
 		return (Chance and LocalPlayer or LocalPlayer)
