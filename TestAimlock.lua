@@ -313,7 +313,6 @@ end
 function ValiantAimHacks.ChangePlayer()
 	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 	local Selected = ValiantAimHacks.Selected
-	local Chance = calcChance(ValiantAimHacks.HitChance)
 	if not ValiantAimHacks.SilentAimEnabled then
 		ValiantAimHacks.Selected = (LocalPlayer)
 	else
@@ -321,7 +320,7 @@ function ValiantAimHacks.ChangePlayer()
 			--local Character = ValiantAimHacks.getCharacter(Selected)
 			--local TargetPart = Character[ValiantAimHacks.TargetPart]
 			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
-				ValiantAimHacks.Selected = (Chance and Selected or LocalPlayer)
+				ValiantAimHacks.Selected = (Selected or LocalPlayer)
 			else
 				ValiantAimHacks.getClosestPlayerToCursor()
 			end
