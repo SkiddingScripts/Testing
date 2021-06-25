@@ -255,6 +255,44 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 end
 
 
+function ValiantAimHacks.TgetClosestPlayerToCursor()
+
+	-- // Vars
+	local ClosestPlayer = nil
+	local ShortestDistance = 1/0
+
+	-- // Loop through all players
+	local AllPlayers = Players:GetPlayers()
+	for i = 1, #AllPlayers do
+		local Player = AllPlayers[i]
+		local Character = ValiantAimHacks.getCharacter(Player)
+
+		if (not ValiantAimHacks.checkWhitelisted(Player) and ValiantAimHacks.checkPlayer(Player) and Character and Character:FindFirstChild(ValiantAimHacks.TargetPart) and ValiantAimHacks.checkHealth(Player)) then
+			-- // Team Check
+			if (ValiantAimHacks.TeamCheck and not ValiantAimHacks.checkTeam(Player, LocalPlayer)) then continue end
+
+			-- // Vars
+			local TargetPart = Character[ValiantAimHacks.TargetPart]
+			local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
+			local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
+
+			-- // Check if is in FOV
+			if (circle.Radius > Magnitude and Magnitude < ShortestDistance) then
+				-- // Check if Visible
+				if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then continue  end
+
+				-- //
+				ClosestPlayer = Player
+				ShortestDistance = Magnitude
+			end
+		end
+	end
+
+
+
+	ValiantAimHacks.TSelect = (ClosestPlayer or LocalPlayer)
+end
+
 function ValiantAimHacks.Radius(Player)
 	local Character = ValiantAimHacks.getCharacter(Player)
 	local TargetPart = Character[ValiantAimHacks.TargetPart]
@@ -309,9 +347,9 @@ function ValiantAimHacks.TChangePlayer()
 			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
 				ValiantAimHacks.Selected = (Selected or LocalPlayer)
 			else
-				ValiantAimHacks.getClosestPlayerToCursor()
+				ValiantAimHacks.TgetClosestPlayerToCursor()
 			end
-		else ValiantAimHacks.getClosestPlayerToCursor()
+		else ValiantAimHacks.TgetClosestPlayerToCursor()
 		end 
 	end
 end
