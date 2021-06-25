@@ -260,7 +260,6 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 
 	ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
 	ValiantAimHacks.TSelect = (ClosestPlayer or LocalPlayer)
-	return Chance, ClosestPlayer, LocalPlayer
 end
 
 
@@ -289,6 +288,7 @@ function ValiantAimHacks.ChangePlayer()
 	local Chance = calcChance(ValiantAimHacks.HitChance)
 	if (not Chance) then
 		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
+		ValiantAimHacks.TSelect = (ValiantAimHacks.TSelect or LocalPlayer)
 
 		return (Chance and LocalPlayer or LocalPlayer)
 	end
