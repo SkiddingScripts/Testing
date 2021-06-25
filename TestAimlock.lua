@@ -294,6 +294,7 @@ function ValiantAimHacks.ChangePlayer()
 	end
 	if not ValiantAimHacks.SilentAimEnabled then
 		ValiantAimHacks.Selected = (LocalPlayer)
+		ValiantAimHacks.TracingTarget = (LocalPlayer)
 	else
 		if Selected ~= nil then
 			--local Character = ValiantAimHacks.getCharacter(Selected)
