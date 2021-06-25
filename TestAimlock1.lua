@@ -310,6 +310,7 @@ end
 function ValiantAimHacks.ChangePlayerTrace()
 	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 	local Selected = ValiantAimHacks.TSelected
+	print(Selected)
 	if not ValiantAimHacks.SilentAimEnabled then
 		ValiantAimHacks.Selected = (LocalPlayer)
 	else
