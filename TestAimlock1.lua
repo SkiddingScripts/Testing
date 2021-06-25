@@ -40,7 +40,7 @@ getgenv().ValiantAimHacks = {
 	VisibleCheck = true,
 	TeamCheck = true,
 	FOV = 60,
-	HitChance = 100,
+	HitChance = 0,
 	Selected = LocalPlayer,
 	TargetPart = "Head",
 	BlacklistedTeams = {
@@ -284,24 +284,19 @@ function ValiantAimHacks.ChangePlayer()
 	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 	local Selected = ValiantAimHacks.Selected
 	local Chance = calcChance(ValiantAimHacks.HitChance)
-	print("before print")
-	print(ValiantAimHacks.HitChance)
-	if (not Chance) then
-		print("bruh?")
-		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
-
-		return (Chance and LocalPlayer or LocalPlayer)
-	end
-	print("Bruh? After chance")
 	if not ValiantAimHacks.SilentAimEnabled then
 		ValiantAimHacks.Selected = (LocalPlayer)
 	else
 -- // Chance ontop so it returns Selected EXX DEE
+		if (not Chance) then
+			ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
+
+			return (Chance and LocalPlayer or LocalPlayer)
+		end
 		if Selected ~= nil then
 			--local Character = ValiantAimHacks.getCharacter(Selected)
 			--local TargetPart = Character[ValiantAimHacks.TargetPart]
 			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
-
 				ValiantAimHacks.Selected = (Chance and Selected or LocalPlayer)
 			else
 				ValiantAimHacks.getClosestPlayerToCursor()
