@@ -223,11 +223,11 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 	local ShortestDistance = 1/0
 
 	-- // Chance
-	if (not Chance) then
-		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
+	--if (not Chance) then
+	--	ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
 
-		return (Chance and LocalPlayer or LocalPlayer)
-	end
+	--	return (Chance and LocalPlayer or LocalPlayer)
+	--end
 
 	-- // Loop through all players
 	local AllPlayers = Players:GetPlayers()
