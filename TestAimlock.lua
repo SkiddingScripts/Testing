@@ -284,15 +284,18 @@ function ValiantAimHacks.ChangePlayer()
 	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 	local Selected = ValiantAimHacks.Selected
 	local Chance = calcChance(ValiantAimHacks.HitChance)
+	print(ValiantAimHacks.Chance)
+	print("before")
+if (not Chance) then
+		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
+		print("Kid selected bruh?")
+
+		return (Chance and LocalPlayer or LocalPlayer)
+	end
+print("how..?")
 	if not ValiantAimHacks.SilentAimEnabled then
 		ValiantAimHacks.Selected = (LocalPlayer)
 	else
--- // Chance ontop so it returns Selected EXX DEE
-		if (not Chance) then
-			ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
-
-			return (Chance and LocalPlayer or LocalPlayer)
-		end
 		if Selected ~= nil then
 			--local Character = ValiantAimHacks.getCharacter(Selected)
 			--local TargetPart = Character[ValiantAimHacks.TargetPart]
