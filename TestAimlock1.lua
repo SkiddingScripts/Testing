@@ -259,7 +259,7 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 
 
 	ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
-	ValiantAimHacks.TraceSelect = (Chance and ClosestPlayer or LocalPlayer)
+	ValiantAimHacks.TraceSelect = (ClosestPlayer or LocalPlayer)
 	return Chance, ClosestPlayer, LocalPlayer
 end
 
@@ -297,6 +297,7 @@ if (not Chance) then
 		ValiantAimHacks.Selected = (LocalPlayer)
 	else
 		if Selected ~= nil then
+			print(TSelect)
 			--local Character = ValiantAimHacks.getCharacter(Selected)
 			--local TargetPart = Character[ValiantAimHacks.TargetPart]
 			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and Kid then
