@@ -355,8 +355,8 @@ end
 -- // Heartbeat Function
 Heartbeat:Connect(function()
 	ValiantAimHacks.updateCircle()
-	ValiantAimHacks.ChangePlayer()
 	ValiantAimHacks.TChangePlayer()
+	ValiantAimHacks.ChangePlayer()
 	--	ValiantAimHacks.getClosestPlayerToCursor()
 end)
 
