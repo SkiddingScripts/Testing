@@ -296,10 +296,9 @@ function ValiantAimHacks.ChangePlayer()
 		ValiantAimHacks.Selected = (LocalPlayer)
 	else
 		if Selected ~= nil then
-			local kid = TSelected ~= nil and TSelected.Character:WaitForChild("BodyEffects") ~= nil and TSelected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(TSelected)
 			--local Character = ValiantAimHacks.getCharacter(Selected)
 			--local TargetPart = Character[ValiantAimHacks.TargetPart]
-			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and kid then
+			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and TSelected ~= nil and TSelected.Character:WaitForChild("BodyEffects") ~= nil and TSelected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(TSelected) then
 				ValiantAimHacks.Selected = (Chance and Selected or LocalPlayer)
 				ValiantAimHacks.TracingTarget = (TSelected or LocalPlayer)
 			else
