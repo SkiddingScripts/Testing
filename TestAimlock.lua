@@ -42,7 +42,7 @@ getgenv().ValiantAimHacks = {
 	FOV = 60,
 	HitChance = 100,
 	Selected = LocalPlayer,
-	TraceSelect = LocalPlayer,
+	TSelected = LocalPlayer,
 	TargetPart = "Head",
 	BlacklistedTeams = {
 		{
@@ -219,9 +219,16 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 
 	-- // Vars
 	local ClosestPlayer = nil
+	local Chance = calcChance(ValiantAimHacks.HitChance)
 	local ShortestDistance = 1/0
 
 	-- // Chance
+	if (not Chance) then
+		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
+
+		return (Chance and LocalPlayer or LocalPlayer)
+	end
+
 	-- // Loop through all players
 	local AllPlayers = Players:GetPlayers()
 	for i = 1, #AllPlayers do
@@ -251,9 +258,9 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 
 
 
-	ValiantAimHacks.Selected = (ClosestPlayer or LocalPlayer)
-	ValiantAimHacks.TraceSelect = (ClosestPlayer or LocalPlayer)
-	return ClosestPlayer, LocalPlayer
+	ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
+	ValiantAimHacks.TSelected = (Chance and ClosestPlayer or LocalPlayer)
+	return Chance, ClosestPlayer, LocalPlayer
 end
 
 
@@ -278,12 +285,11 @@ end
 function ValiantAimHacks.ChangePlayer()
 	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 	local Selected = ValiantAimHacks.Selected
-	local TSelect = ValiantAimHacks.TraceSelect
 	local Chance = calcChance(ValiantAimHacks.HitChance)
-	local Kid = TSelect ~= nil and TSelect.Character:WaitForChild("BodyEffects") ~= nil and TSelect.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(TSelect)
-if (not Chance) then
-		ValiantAimHacks.TraceSelect = (TSelect or LocalPlayer)
+	if (not Chance) then
 		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
+
+		return (Chance and LocalPlayer or LocalPlayer)
 	end
 	if not ValiantAimHacks.SilentAimEnabled then
 		ValiantAimHacks.Selected = (LocalPlayer)
@@ -291,9 +297,8 @@ if (not Chance) then
 		if Selected ~= nil then
 			--local Character = ValiantAimHacks.getCharacter(Selected)
 			--local TargetPart = Character[ValiantAimHacks.TargetPart]
-			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and Kid then
+			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
 				ValiantAimHacks.Selected = (Chance and Selected or LocalPlayer)
-				ValiantAimHacks.TraceSelect = (TSelect or LocalPlayer)
 			else
 				ValiantAimHacks.getClosestPlayerToCursor()
 			end
@@ -301,78 +306,32 @@ if (not Chance) then
 		end 
 	end
 end
+
+function ValiantAimHacks.ChangePlayerTrace()
+	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
+	local Selected = ValiantAimHacks.TSelected
+	if not ValiantAimHacks.SilentAimEnabled then
+		ValiantAimHacks.Selected = (LocalPlayer)
+	else
+		if Selected ~= nil then
+			--local Character = ValiantAimHacks.getCharacter(Selected)
+			--local TargetPart = Character[ValiantAimHacks.TargetPart]
+			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
+				ValiantAimHacks.TSelected = (Selected or LocalPlayer)
+			else
+				ValiantAimHacks.getClosestPlayerToCursor()
+			end
+		else ValiantAimHacks.getClosestPlayerToCursor()
+		end 
+	end
+end
+
 -- // Heartbeat Function
 Heartbeat:Connect(function()
 	ValiantAimHacks.updateCircle()
 	ValiantAimHacks.ChangePlayer()
+	ValiantAimHacks.ChangePlayerTrace()
 	--	ValiantAimHacks.getClosestPlayerToCursor()
 end)
 
 return ValiantAimHacks
-
---[[
-Examples:
-
---// Namecall Version // --
--- // Metatable Variables
-local mt = getrawmetatable(game)
-local backupindex = mt.__index
-setreadonly(mt, false)
-
--- // Load Silent Aim
-local ValiantAimHacks = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Stefanuk12/ROBLOX/master/Universal/Experimental%20Silent%20Aim%20Module.lua"))()
-
--- // Hook
-mt.__namecall = newcclosure(function(...)
-    -- // Vars
-    local args = {...}
-    local method = getnamecallmethod()
-
-    -- // Checks
-    if (method == "FireServer") then
-        if (args[1].Name == "RemoteNameHere") then
-            -- change args
-
-            -- // Return changed arguments
-            return backupnamecall(unpack(args))
-        end
-    end
-
-    -- // Return
-    return backupnamecall(...)
-end)
-
--- // Revert Metatable readonly status
-setreadonly(mt, true)
-
--- // Index Version // --
--- // Metatable Variables
-local mt = getrawmetatable(game)
-local backupindex = mt.__index
-setreadonly(mt, false)
-
--- // Load Silent Aim
-local ValiantAimHacks = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Stefanuk12/ROBLOX/master/Universal/Experimental%20Silent%20Aim%20Module.lua"))()
-
--- // Hook
-mt.__index = newcclosure(function(t, k)
-    -- // Check if it trying to get our mouse's hit or target
-    if (t:IsA("Mouse") and (k == "Hit" or k == "Target")) then
-        -- // If we can use the silent aim
-        if (ValiantAimHacks.checkSilentAim()) then
-            -- // Vars
-            local CPlayer = ValiantAimHacks.Selected
-            local Character = ValiantAimHacks.getCharacter(CPlayer) -- // good practice to use this to get the character
-
-            -- // Return modded val
-            return (k == "Hit" and Character.Head.CFrame or Character.Head)
-        end
-    end
-
-    -- // Return
-    return backupindex(t, k)
-end)
-
--- // Revert Metatable readonly status
-setreadonly(mt, true)
-]]
