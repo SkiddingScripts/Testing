@@ -257,7 +257,7 @@ end
 function ValiantAimHacks.TgetClosestPlayerToCursor()
 
 	-- // Vars
-	local ClosestPlayer = nil
+	local ClosestPlayer1 = nil
 	local ShortestDistance = 1/0
 
 	-- // Loop through all players
@@ -281,7 +281,7 @@ function ValiantAimHacks.TgetClosestPlayerToCursor()
 				if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then continue  end
 
 				-- //
-				ClosestPlayer = Player
+				ClosestPlayer1 = Player
 				ShortestDistance = Magnitude
 			end
 		end
@@ -289,7 +289,7 @@ function ValiantAimHacks.TgetClosestPlayerToCursor()
 
 
 
-	ValiantAimHacks.TSelect = (ClosestPlayer or LocalPlayer)
+	ValiantAimHacks.TSelect = (ClosestPlayer1 or LocalPlayer)
 end
 
 function ValiantAimHacks.Radius(Player)
