@@ -319,6 +319,7 @@ end
 Heartbeat:Connect(function()
 	ValiantAimHacks.updateCircle()
 	ValiantAimHacks.ChangePlayer()
+	ValiantAimHacks.TChangePlayer()
 	--	ValiantAimHacks.getClosestPlayerToCursor()
 end)
 
