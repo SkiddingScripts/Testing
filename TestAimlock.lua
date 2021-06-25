@@ -287,6 +287,7 @@ function ValiantAimHacks.ChangePlayer()
 	local TSelected = ValiantAimHacks.TSelect
 	local Chance = calcChance(ValiantAimHacks.HitChance)
 	if (not Chance) then
+		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
 	end
 	if not ValiantAimHacks.SilentAimEnabled then
 		ValiantAimHacks.Selected = (LocalPlayer)
