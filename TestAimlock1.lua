@@ -289,6 +289,7 @@ function ValiantAimHacks.ChangePlayer()
 	else
 -- // Chance ontop so it returns Selected EXX DEE
 		if (not Chance) then
+			print("hi")
 			ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
 
 			return (Chance and LocalPlayer or LocalPlayer)
