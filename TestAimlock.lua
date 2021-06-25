@@ -42,7 +42,6 @@ getgenv().ValiantAimHacks = {
 	FOV = 60,
 	HitChance = 100,
 	Selected = LocalPlayer,
-	TSelect = LocalPlayer,
 	TargetPart = "Head",
 	BlacklistedTeams = {
 		{
@@ -219,7 +218,15 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 
 	-- // Vars
 	local ClosestPlayer = nil
+	local Chance = calcChance(ValiantAimHacks.HitChance)
 	local ShortestDistance = 1/0
+
+	-- // Chance
+	if (not Chance) then
+		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
+
+		return (Chance and LocalPlayer or LocalPlayer)
+	end
 
 	-- // Loop through all players
 	local AllPlayers = Players:GetPlayers()
@@ -250,47 +257,10 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 
 
 
-	ValiantAimHacks.Selected = (ClosestPlayer or LocalPlayer)
+	ValiantAimHacks.Selected = (Chance and ClosestPlayer or LocalPlayer)
+	return Chance, ClosestPlayer, LocalPlayer
 end
 
-
-function ValiantAimHacks.TgetClosestPlayerToCursor()
-
-	-- // Vars
-	local ClosestPlayer1 = nil
-	local ShortestDistance = 1/0
-
-	-- // Loop through all players
-	local AllPlayers = Players:GetPlayers()
-	for i = 1, #AllPlayers do
-		local Player = AllPlayers[i]
-		local Character = ValiantAimHacks.getCharacter(Player)
-
-		if (not ValiantAimHacks.checkWhitelisted(Player) and ValiantAimHacks.checkPlayer(Player) and Character and Character:FindFirstChild(ValiantAimHacks.TargetPart) and ValiantAimHacks.checkHealth(Player)) then
-			-- // Team Check
-			if (ValiantAimHacks.TeamCheck and not ValiantAimHacks.checkTeam(Player, LocalPlayer)) then continue end
-
-			-- // Vars
-			local TargetPart = Character[ValiantAimHacks.TargetPart]
-			local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
-			local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
-
-			-- // Check if is in FOV
-			if (circle.Radius > Magnitude and Magnitude < ShortestDistance) then
-				-- // Check if Visible
-				if (ValiantAimHacks.VisibleCheck and not ValiantAimHacks.isPartVisible(TargetPart, Character)) then continue  end
-
-				-- //
-				ClosestPlayer1 = Player
-				ShortestDistance = Magnitude
-			end
-		end
-	end
-
-
-
-	ValiantAimHacks.TSelect = (ClosestPlayer1 or LocalPlayer)
-end
 
 function ValiantAimHacks.Radius(Player)
 	local Character = ValiantAimHacks.getCharacter(Player)
@@ -314,8 +284,10 @@ function ValiantAimHacks.ChangePlayer()
 	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 	local Selected = ValiantAimHacks.Selected
 	local Chance = calcChance(ValiantAimHacks.HitChance)
-	if (not Chance) then
+if (not Chance) then
 		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
+
+		return (Chance and LocalPlayer or LocalPlayer)
 	end
 	if not ValiantAimHacks.SilentAimEnabled then
 		ValiantAimHacks.Selected = (LocalPlayer)
@@ -332,29 +304,9 @@ function ValiantAimHacks.ChangePlayer()
 		end 
 	end
 end
-
-function ValiantAimHacks.TChangePlayer()
-	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
-	local Selected1 = ValiantAimHacks.TSelect
-	if not ValiantAimHacks.SilentAimEnabled then
-		ValiantAimHacks.TSelect = (LocalPlayer)
-	else
-		if Selected1 ~= nil then
-			--local Character = ValiantAimHacks.getCharacter(Selected)
-			--local TargetPart = Character[ValiantAimHacks.TargetPart]
-			if Selected1 ~= nil and Selected1.Character:WaitForChild("BodyEffects") ~= nil and Selected1 ~= LocalPlayer and Selected1.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected1) then
-				ValiantAimHacks.TSelect = (Selected1 or LocalPlayer)
-			else
-				ValiantAimHacks.TgetClosestPlayerToCursor()
-			end
-		else ValiantAimHacks.TgetClosestPlayerToCursor()
-		end 
-	end
-end
 -- // Heartbeat Function
 Heartbeat:Connect(function()
 	ValiantAimHacks.updateCircle()
-	ValiantAimHacks.TChangePlayer()
 	ValiantAimHacks.ChangePlayer()
 	--	ValiantAimHacks.getClosestPlayerToCursor()
 end)
