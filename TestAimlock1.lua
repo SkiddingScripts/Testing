@@ -284,7 +284,7 @@ function ValiantAimHacks.ChangePlayer()
 	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 	local Selected = ValiantAimHacks.Selected
 	local Chance = calcChance(ValiantAimHacks.HitChance)
-	print(ValiantAimHacks.Chance)
+	print(ValiantAimHacks.HitChance)
 	print("before")
 if (not Chance) then
 		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
