@@ -336,15 +336,15 @@ end
 
 function ValiantAimHacks.TChangePlayer()
 	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
-	local Selected = ValiantAimHacks.TSelect
+	local Selected1 = ValiantAimHacks.TSelect
 	if not ValiantAimHacks.SilentAimEnabled then
 		ValiantAimHacks.TSelect = (LocalPlayer)
 	else
-		if Selected ~= nil then
+		if Selected1 ~= nil then
 			--local Character = ValiantAimHacks.getCharacter(Selected)
 			--local TargetPart = Character[ValiantAimHacks.TargetPart]
-			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
-				ValiantAimHacks.Selected = (Selected or LocalPlayer)
+			if Selected1 ~= nil and Selected1.Character:WaitForChild("BodyEffects") ~= nil and Selected1 ~= LocalPlayer and Selected1.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected1) then
+				ValiantAimHacks.TSelect = (Selected1 or LocalPlayer)
 			else
 				ValiantAimHacks.TgetClosestPlayerToCursor()
 			end
