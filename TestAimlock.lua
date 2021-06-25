@@ -284,7 +284,7 @@ function ValiantAimHacks.ChangePlayer()
 if (not Chance) then
 		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
 
-		return (Chance and LocalPlayer or LocalPlayer)
+		return (Chance and TSelect or LocalPlayer)
 	end
 	if not ValiantAimHacks.SilentAimEnabled then
 		ValiantAimHacks.Selected = (LocalPlayer)
