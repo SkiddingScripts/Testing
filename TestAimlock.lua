@@ -282,7 +282,7 @@ function ValiantAimHacks.ChangePlayer()
 	local Chance = calcChance(ValiantAimHacks.HitChance)
 	local Kid = TSelect ~= nil and TSelect.Character:WaitForChild("BodyEffects") ~= nil and TSelect.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(TSelect)
 if (not Chance) then
-		ValiantAimHacks.TraceSelect = (Selected)
+		ValiantAimHacks.TraceSelect = (TSelect or LocalPlayer)
 		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
 
 		return (Chance and LocalPlayer or LocalPlayer)
