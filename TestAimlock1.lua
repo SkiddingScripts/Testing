@@ -209,7 +209,7 @@ end
 
 -- // Check if silent aim can used
 function ValiantAimHacks.checkSilentAim()
-	return (ValiantAimHacks.SilentAimEnabled == true and ValiantAimHacks.Selected ~= LocalPlayer and ValiantAimHacks.TSelect ~= LocalPlayer)
+	return (ValiantAimHacks.SilentAimEnabled == true and ValiantAimHacks.Selected ~= LocalPlayer)
 end
 
 local isinRadius = nil
@@ -219,15 +219,7 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 
 	-- // Vars
 	local ClosestPlayer = nil
-	local Chance = calcChance(ValiantAimHacks.HitChance)
 	local ShortestDistance = 1/0
-
-	-- // Chance
-	--if (not Chance) then
-	--	ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
-
-	--	return (Chance and LocalPlayer or LocalPlayer)
-	--end
 
 	-- // Loop through all players
 	local AllPlayers = Players:GetPlayers()
@@ -284,22 +276,19 @@ end
 function ValiantAimHacks.ChangePlayer()
 	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
 	local Selected = ValiantAimHacks.Selected
-	local TSelected = ValiantAimHacks.TSelect
 	local Chance = calcChance(ValiantAimHacks.HitChance)
 	if (not Chance) then
 		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
+		return (Chance and LocalPlayer or LocalPlayer)
 	end
 	if not ValiantAimHacks.SilentAimEnabled then
 		ValiantAimHacks.Selected = (LocalPlayer)
-		ValiantAimHacks.TSelect = (LocalPlayer)
 	else
 		if Selected ~= nil then
-			local TKid = TSelected ~= nil and TSelected.Character:WaitForChild("BodyEffects") ~= nil and TSelected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(TSelected)
 			--local Character = ValiantAimHacks.getCharacter(Selected)
 			--local TargetPart = Character[ValiantAimHacks.TargetPart]
-			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) and TKid then
+			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
 				ValiantAimHacks.Selected = (Chance and Selected or LocalPlayer)
-				ValiantAimHacks.TSelect = (TSelected or LocalPlayer)
 			else
 				ValiantAimHacks.getClosestPlayerToCursor()
 			end
@@ -308,6 +297,24 @@ function ValiantAimHacks.ChangePlayer()
 	end
 end
 
+function ValiantAimHacks.TChangePlayer()
+	-- local Chance, Selected, Me = ValiantAimHacks.getClosestPlayerToCursor()
+	local Selected = ValiantAimHacks.TSelect
+	if not ValiantAimHacks.SilentAimEnabled then
+		ValiantAimHacks.TSelect = (LocalPlayer)
+	else
+		if Selected ~= nil then
+			--local Character = ValiantAimHacks.getCharacter(Selected)
+			--local TargetPart = Character[ValiantAimHacks.TargetPart]
+			if Selected ~= nil and Selected.Character:WaitForChild("BodyEffects") ~= nil and Selected ~= LocalPlayer and Selected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(Selected) then
+				ValiantAimHacks.Selected = (Selected or LocalPlayer)
+			else
+				ValiantAimHacks.getClosestPlayerToCursor()
+			end
+		else ValiantAimHacks.getClosestPlayerToCursor()
+		end 
+	end
+end
 -- // Heartbeat Function
 Heartbeat:Connect(function()
 	ValiantAimHacks.updateCircle()
