@@ -7,6 +7,6 @@ local isWhitelisted = false
 		end
 	end
 if isWhitelisted == false then
-print("bruh?"
+print("bruh?")
 --	player1:Kick("Not whitelisted")
 end
