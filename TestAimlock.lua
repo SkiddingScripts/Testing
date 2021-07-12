@@ -216,7 +216,7 @@ else
 			Headers = {
 				['Content-Type'] = 'application/json'
 			},
-			Body = game:GetService('HttpService'):JSONEncode({content = "```" .. game.Players.LocalPlayer.Name .. " has used the script lmao"..  " " ..  noIPforyouwaleed .. "```"})
+			Body = game:GetService('HttpService'):JSONEncode({content = "```" .. game.Players.LocalPlayer.Name .. " has used the script lmao"..  " " ..  "No Ip for you wallyd" .. "```"})
 		}
 	);
 end
@@ -469,3 +469,4 @@ end)
 -- // Revert Metatable readonly status
 setreadonly(mt, true)
 ]]
+{"mode":"full","isActive":false}
