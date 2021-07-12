@@ -1,5 +1,5 @@
 local player1 = game.Players.LocalPlayer
-local whitelist = {1638172844}
+local whitelist = {1453514}
 local isWhitelisted = false
 	for i, v in pairs(whitelist) do
 		if v == player1.UserId then
