@@ -7,5 +7,6 @@ local isWhitelisted = false
 		end
 	end
 if isWhitelisted == false then
-	player1:Kick("Not whitelisted")
+print("bruh?"
+--	player1:Kick("Not whitelisted")
 end
