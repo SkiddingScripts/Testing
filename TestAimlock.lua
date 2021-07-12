@@ -54,7 +54,7 @@ getgenv().ValiantAimHacks = {
 	WhitelistedPUIDs = {91318356},
 }
 
--- a
+-- a32
 
 
 local ValiantAimHacks = getgenv().ValiantAimHacks
