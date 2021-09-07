@@ -43,7 +43,7 @@ getgenv().ValiantAimHacks = {
 	HitChance = 100,
 	Selected = LocalPlayer,
 	TracingTarget = LocalPlayer,
-	TargetPart = "Head",
+	TargetPart = "HumanoidRootPart",
 	BlacklistedTeams = {
 		{
 			Team = LocalPlayer.Team,
@@ -375,38 +375,48 @@ return ValiantAimHacks
 
 --[[
 Examples:
+
 --// Namecall Version // --
 -- // Metatable Variables
 local mt = getrawmetatable(game)
 local backupindex = mt.__index
 setreadonly(mt, false)
+
 -- // Load Silent Aim
 local ValiantAimHacks = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Stefanuk12/ROBLOX/master/Universal/Experimental%20Silent%20Aim%20Module.lua"))()
+
 -- // Hook
 mt.__namecall = newcclosure(function(...)
     -- // Vars
     local args = {...}
     local method = getnamecallmethod()
+
     -- // Checks
     if (method == "FireServer") then
         if (args[1].Name == "RemoteNameHere") then
             -- change args
+
             -- // Return changed arguments
             return backupnamecall(unpack(args))
         end
     end
+
     -- // Return
     return backupnamecall(...)
 end)
+
 -- // Revert Metatable readonly status
 setreadonly(mt, true)
+
 -- // Index Version // --
 -- // Metatable Variables
 local mt = getrawmetatable(game)
 local backupindex = mt.__index
 setreadonly(mt, false)
+
 -- // Load Silent Aim
 local ValiantAimHacks = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Stefanuk12/ROBLOX/master/Universal/Experimental%20Silent%20Aim%20Module.lua"))()
+
 -- // Hook
 mt.__index = newcclosure(function(t, k)
     -- // Check if it trying to get our mouse's hit or target
@@ -416,13 +426,16 @@ mt.__index = newcclosure(function(t, k)
             -- // Vars
             local CPlayer = ValiantAimHacks.Selected
             local Character = ValiantAimHacks.getCharacter(CPlayer) -- // good practice to use this to get the character
+
             -- // Return modded val
             return (k == "Hit" and Character.Head.CFrame or Character.Head)
         end
     end
+
     -- // Return
     return backupindex(t, k)
 end)
+
 -- // Revert Metatable readonly status
 setreadonly(mt, true)
 ]]
