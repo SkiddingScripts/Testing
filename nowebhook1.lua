@@ -241,7 +241,7 @@ function ValiantAimHacks.getClosestPlayerToCursor()
 
 			-- // Vars
 			local TargetPart = Character[ValiantAimHacks.TargetPart]
-			local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
+			local PartPos, _ = CurrentCamera:WorldToScreenPoint(TargetPart.Position)
 			local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
 
 			-- // Check if is in FOV
@@ -289,7 +289,7 @@ function ValiantAimHacks.TgetClosestPlayerToCursor()
 
 			-- // Vars
 			local TargetPart = Character[ValiantAimHacks.TargetPart]
-			local PartPos, _ = CurrentCamera:WorldToViewportPoint(TargetPart.Position)
+			local PartPos, _ = CurrentCamera:WorldToScreenPoint(TargetPart.Position)
 			local Magnitude = (Vector2.new(PartPos.X, PartPos.Y) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
 
 			-- // Check if is in FOV
